@@ -4,8 +4,8 @@
 
     composer install
 
-    sail artisan storage:link
-
     sail up -d
+
+    sail artisan storage:link
     
     Visit http://localhost:85/
