@@ -2,7 +2,7 @@
 
     cd documents-merge
 
-    sail composer install
+    composer install
 
     sail up -d
     
