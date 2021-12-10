@@ -8,16 +8,16 @@ class MergeController extends Controller
 {
     public function index() {
 
-    $new_id_documents = [];
+    $new_documents = [];
 
-    $original_id_documents = ['http://www.africau.edu/images/default/sample.pdf',
-                              'https://i0.wp.com/zambianews365.com/wp-content/uploads/2020/02/Bizwell-Mutale.jpeg',
-                              'https://www.entnet.org/wp-content/uploads/2021/04/Instructions-for-Adding-Your-Logo-2.pdf',
-                              'https://image.freepik.com/free-vector/red-rooster-cock-side-view-abstract_1284-16627.jpg',
-                              'https://www.singlestore.com/images/cms/components/section-key-benefit/unlimited-scale_inverted.png'];
+    $original_documents = ['http://www.africau.edu/images/default/sample.pdf',
+                           'https://i0.wp.com/zambianews365.com/wp-content/uploads/2020/02/Bizwell-Mutale.jpeg',
+                           'https://www.entnet.org/wp-content/uploads/2021/04/Instructions-for-Adding-Your-Logo-2.pdf',
+                           'https://image.freepik.com/free-vector/red-rooster-cock-side-view-abstract_1284-16627.jpg',
+                           'https://www.singlestore.com/images/cms/components/section-key-benefit/unlimited-scale_inverted.png'];
 
 
-    foreach ($original_id_documents as $document) {
+    foreach ($original_documents as $document) {
 
         $extension = strtolower(pathinfo($document, PATHINFO_EXTENSION));
 
@@ -29,7 +29,7 @@ class MergeController extends Controller
             Storage::disk('public')->put($file_name, $file);
 
             // add to new documents array
-            $new_id_documents[] = $file_name;
+            $new_documents[] = $file_name;
 
         } else if ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png') {
 
@@ -54,7 +54,7 @@ class MergeController extends Controller
             Storage::disk('public')->put($file_name, $converted);
 
             // add to new documents array
-            $new_id_documents[] = $file_name;
+            $new_documents[] = $file_name;
 
         }
 
@@ -63,7 +63,7 @@ class MergeController extends Controller
     // merge pdf documents
     $pdf = new \Jurosh\PDFMerge\PDFMerger;
 
-    foreach ($new_id_documents as $document) {
+    foreach ($new_documents as $document) {
 
         $path = 'storage'.$document;
   
